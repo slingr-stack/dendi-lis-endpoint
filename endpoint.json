@@ -1,0 +1,63 @@
+{
+    "label": "Dendi LIS",
+    "name": "dendiLIS",
+    "apiVersion": "v1",
+    "internal": false,
+    "configurationType": "GLOBAL",
+    "deployment": {
+        "profiles":[
+            {
+                "name": "default",
+                "label": "Default",
+                "memory": 256,
+                "description": "Default configuration"
+            }
+        ],
+        "allowMultipleInstances": false
+    },
+    "status": "ACTIVE",
+    "stores": [],
+    "events": [
+        {
+            "label": "Webhooks",
+            "name": "processWebhook",
+            "description": "Event send for the endpoint each time that a POST request to the root /orders path of the web service."
+        }
+    ],
+    "functions": [
+        {
+            "label": "GET",
+            "name": "_get"
+        },
+        {
+            "label": "PUT",
+            "name": "_put"
+        },
+        {
+            "label": "POST",
+            "name": "_post"
+        },
+        {
+            "label": "DELETE",
+            "name": "_delete"
+        }
+    ],
+    "scripts":[
+        "utils.js",
+        "dendi-fn-helpers.js"
+    ],
+    "configuration":[
+        {
+            "name": "apiToken",
+            "label": "API Token",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "apiUrl",
+            "label": "API URL",
+            "type": "text",
+            "required": true
+        }
+    ]
+}
