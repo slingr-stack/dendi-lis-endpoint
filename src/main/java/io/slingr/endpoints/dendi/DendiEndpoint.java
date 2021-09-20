@@ -1,6 +1,5 @@
-package io.slingr.endpoints.dendiLIS;
+package io.slingr.endpoints.dendi;
 
-import com.fasterxml.jackson.core.JsonToken;
 import io.slingr.endpoints.HttpEndpoint;
 import io.slingr.endpoints.exceptions.EndpointException;
 import io.slingr.endpoints.framework.annotations.*;
@@ -13,22 +12,17 @@ import io.slingr.endpoints.ws.exchange.FunctionRequest;
 import io.slingr.endpoints.ws.exchange.WebServiceRequest;
 import io.slingr.endpoints.ws.exchange.WebServiceResponse;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Random;
-import java.util.function.Function;
 
 import java.util.UUID;
 
@@ -52,9 +46,6 @@ public class DendiEndpoint extends HttpEndpoint {
 
     public DendiEndpoint() {
     }
-
-    @EndpointProperty
-    private String dendiEnvironment;
 
     @Override
     public String getApiUri(){
