@@ -9,7 +9,7 @@
 
 var urlsData = {
 	"orders.get": {
-		"0": "/orders?uuid=:orderId"
+		"0": "/orders/?uuid=:orderId"
 	},
 	"orders.post": {
 		"0": "/orders/"
