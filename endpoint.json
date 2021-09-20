@@ -52,13 +52,13 @@
     ],
     "configuration":[
         {
-            "name": "apiToken",
+            "name": "API_TOKEN",
             "label": "API Token",
             "type": "text",
             "required": true
         },
         {
-            "name": "apiUrl",
+            "name": "API_URL",
             "label": "API URL",
             "type": "text",
             "required": true
