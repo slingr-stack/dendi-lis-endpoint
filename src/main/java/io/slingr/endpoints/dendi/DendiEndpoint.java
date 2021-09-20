@@ -89,10 +89,6 @@ public class DendiEndpoint extends HttpEndpoint {
     public Json post(FunctionRequest request) {
         try {
             // continue with the default processor
-            Json req = request.getRequest();
-            appLogger.warn("API_URL is: "+this.API_URL);
-
-            appLogger.warn("THE req ON _post IS: "+req.toString());
             return defaultPostRequest(request);
         } catch (EndpointException restException) {
             throw restException;
@@ -112,10 +108,8 @@ public class DendiEndpoint extends HttpEndpoint {
     @EndpointFunction(name = "_getReportFile")
     public Json getReportFile(Json pdfData) throws IOException {
 
-        System.out.println("Se ejecuta getReportFile y pdfData es: "+pdfData.toString());
         List<Json> reportsList = pdfData.jsons("results").get(0).jsons("reports");
         String reportUrl = reportsList.get(reportsList.size()-1).string("pdf_file");
-        System.out.println("reportUrl es: "+reportUrl);
 
         String fileName = "report-" + UUID.randomUUID() + ".pdf";
 
@@ -131,7 +125,6 @@ public class DendiEndpoint extends HttpEndpoint {
             if (response.getStatusLine().getStatusCode() != 200) {
                 status = "fail";
                 statusCode = response.getStatusLine().getStatusCode();
-                System.out.println("Content Type es: "+response.getEntity().getContentType().getValue());
                 if (response.getEntity() == null || response.getEntity().getContentType() == null /*||
                         !StringUtils.equals(response.getEntity().getContentType().getValue(), "application/xml")*/) {
                     hasFile = false;
@@ -140,9 +133,7 @@ public class DendiEndpoint extends HttpEndpoint {
             if (hasFile) {
                 is = response.getEntity().getContent();
                 ContentType contentType = ContentType.getOrDefault(response.getEntity());
-                System.out.println("contentType es: "+contentType);
                 String mimeType = contentType.getMimeType();
-                System.out.println("mimeType es: "+mimeType);
                 appLogger.info(String.format("Starting upload of pdf report [%s]", fileName));
                 fileJson = files().upload(fileName, is, mimeType);
                 appLogger.info(String.format("Report was upload successfully as [%s]", fileName));
@@ -162,7 +153,6 @@ public class DendiEndpoint extends HttpEndpoint {
              */
             IOUtils.closeQuietly(is);
         }
-        System.out.println("fileJson es: "+fileJson.toString());
         return fileJson;
     }
 
