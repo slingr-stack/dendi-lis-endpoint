@@ -90,6 +90,8 @@ public class DendiEndpoint extends HttpEndpoint {
         try {
             // continue with the default processor
             Json req = request.getRequest();
+            appLogger.warn("API_URL is: "+this.API_URL);
+
             appLogger.warn("THE req ON _post IS: "+req.toString());
             return defaultPostRequest(request);
         } catch (EndpointException restException) {
