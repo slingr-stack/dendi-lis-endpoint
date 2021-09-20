@@ -99,7 +99,6 @@ endpoint.orders.get = function() {
 	var obj = urlsData['orders.get'];
 	var params = analyzeParams(arguments);
 	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
-	sys.logs.debug("LA URLS ES:"+url);
 	return endpoint.get(url);
 };
 
