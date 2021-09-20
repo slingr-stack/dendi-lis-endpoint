@@ -2,7 +2,7 @@
 //                                                                      //
 //    This file is generated with gen/gen-quickbooks-payments-helpers.js//
 //                                                                      //
-//            Tue Sep 14 2021 17:04:52 GMT-0300 (hora estándar de Argentina)                   //
+//            Fri Sep 17 2021 15:17:42 GMT-0300 (hora estándar de Argentina)                   //
 //                                                                      //
 //////////////////////////////////////////////////////////////////////////
 
@@ -24,7 +24,10 @@ var urlsData = {
 		"0": "/orders/pools/"
 	},
 	"orders.reports.get": {
-		"0": "/orders/reports/"
+		"1": "/orders/reports/?code=:orderCode"
+	},
+	"reports.post": {
+		"0": "/reports/"
 	},
 	"patients.get": {
 		"0": "/patients/?account_uuid=:accountUuid"
@@ -133,7 +136,16 @@ endpoint.orders.reports.get = function() {
 	var obj = urlsData['orders.reports.get'];
 	var params = analyzeParams(arguments);
 	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
-	return endpoint.get(url);
+	var reportData = endpoint.get(url);
+	return endpoint._getReportFile(reportData);
+};
+
+endpoint.reports = {};
+endpoint.reports.post = function() {
+	var obj = urlsData['reports.post'];
+	var params = analyzeParams(arguments);
+	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, false);
+	return endpoint.post(url, params.argumentsObj);
 };
 
 endpoint.patients = {};

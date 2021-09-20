@@ -40,6 +40,10 @@
         {
             "label": "DELETE",
             "name": "_delete"
+        },
+        {
+            "label": "Get Report File",
+            "name": "_getReportFile"
         }
     ],
     "scripts":[

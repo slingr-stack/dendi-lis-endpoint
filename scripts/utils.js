@@ -30,7 +30,6 @@ endpoint.delete = function (url, options) {
     options = checkHttpOptions(url, options);
     return endpoint._delete(options);
 };
-
 /////////////////////////////
 //  Private helpers
 /////////////////////////////
