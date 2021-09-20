@@ -23,6 +23,8 @@ endpoint.put = function (url, options) {
 
 endpoint.post = function (url, options) {
     options = checkHttpOptions(url, options);
+    sys.logs.debug("EN endpoint.post url es: "+url);
+    sys.logs.debug("EN endpoint.post options es: "+JSON.stringify(options));
     return endpoint._post(options);
 };
 

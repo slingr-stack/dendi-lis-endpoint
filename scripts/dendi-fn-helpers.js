@@ -9,7 +9,7 @@
 
 var urlsData = {
 	"orders.get": {
-		"0": "/orders?uuid=:orderId"
+		"0": "/orders/?uuid=:orderId"
 	},
 	"orders.post": {
 		"0": "/orders/"
@@ -99,6 +99,7 @@ endpoint.orders.get = function() {
 	var obj = urlsData['orders.get'];
 	var params = analyzeParams(arguments);
 	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
+	sys.logs.debug("LA URLS ES:"+url);
 	return endpoint.get(url);
 };
 
