@@ -47,9 +47,6 @@ public class DendiEndpoint extends HttpEndpoint {
     public DendiEndpoint() {
     }
 
-    @EndpointProperty
-    private String dendiEnvironment;
-
     @Override
     public String getApiUri(){
         return API_URL;
