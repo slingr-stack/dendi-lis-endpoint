@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.slingr.endpoints</groupId>
-    <artifactId>endpoint-dendiLIS</artifactId>
+    <artifactId>endpoint-dendi</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>SLINGR - Dendi LIS Endpoint</name>
     <packaging>jar</packaging>
@@ -33,7 +33,7 @@
         <project.build.s3-wagon.version>3.3</project.build.s3-wagon.version>
         <project.build.shade.version>2.4.1</project.build.shade.version>
         <!-- Other properties -->
-        <build.main-class>io.slingr.endpoints.dendiLIS.Runner</build.main-class>
+        <build.main-class>io.slingr.endpoints.dendi.Runner</build.main-class>
     </properties>
 
     <dependencies>
