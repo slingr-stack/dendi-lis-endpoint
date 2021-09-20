@@ -37,9 +37,9 @@ import java.util.UUID;
  *
  * <p>Created by lefunes on 01/12/16.
  */
-@SlingrEndpoint(name = "dendiLIS")
-public class DendiLISEndpoint extends HttpEndpoint {
-    private static final Logger logger = LoggerFactory.getLogger(DendiLISEndpoint.class);
+@SlingrEndpoint(name = "dendi")
+public class DendiEndpoint extends HttpEndpoint {
+    private static final Logger logger = LoggerFactory.getLogger(DendiEndpoint.class);
 
     @ApplicationLogger
     private AppLogs appLogger;
@@ -50,7 +50,7 @@ public class DendiLISEndpoint extends HttpEndpoint {
     @EndpointProperty
     private String API_TOKEN;
 
-    public DendiLISEndpoint() {
+    public DendiEndpoint() {
     }
 
     @EndpointProperty
