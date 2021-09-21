@@ -1,187 +1,195 @@
-//////////////////////////////////////////////////////////////////////////
-//                                                                      //
-//    This file is generated with gen/gen-quickbooks-payments-helpers.js//
-//                                                                      //
-//            Fri Sep 17 2021 15:17:42 GMT-0300 (hora estándar de Argentina)                   //
-//                                                                      //
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+//                                                                        //
+//        This file is generated with dendi/gen/gen-dendi-helpers.js      //
+//                                                                        //
+//                   Public API - Account functions                       //
+//                                                                        //
+////////////////////////////////////////////////////////////////////////////
 
 
 var urlsData = {
-	"orders.get": {
-		"0": "/orders/?uuid=:orderId"
+	"get": {
+		"orders.get": {
+			"1": "/orders?uuid=:orderId"
+		},
+		"orders.pools.get": {
+			"0": "/orders/pools/"
+		},
+		"orders.reports.get": {
+			"1": "/orders/reports/?code=:orderCode"
+		},
+		"providers.get": {
+			"0": "/providers/"
+		},
+		"patients.get": {
+			"1": "/patients/?account_uuid=:accountUuid"
+		}
 	},
-	"orders.post": {
-		"0": "/orders/"
+	"post": {
+		"orders.post": {
+			"0": "/orders/"
+		},
+		"orders.pools.post": {
+			"0": "/orders/pools/"
+		},
+		"providers.post": {
+			"0": "/providers/"
+		},
+		"patients.post": {
+			"0": "/patients/"
+		},
+		"reports.post": {
+			"0": "/reports/"
+		}
 	},
-	"orders.delete": {
-		"1": "/orders/:orderCode/"
+	"delete": {
+		"orders.delete": {
+			"1": "/orders/:orderCode/"
+		}
 	},
-	"orders.pools.get": {
-		"0": "/orders/pools/"
-	},
-	"orders.pools.post": {
-		"0": "/orders/pools/"
-	},
-	"orders.reports.get": {
-		"1": "/orders/reports/?code=:orderCode"
-	},
-	"reports.post": {
-		"0": "/reports/"
-	},
-	"patients.get": {
-		"0": "/patients/?account_uuid=:accountUuid"
-	},
-	"patients.put": {
-		"1": "/patients/:patientUuid/"
-	},
-	"patients.post": {
-		"0": "/patients/"
-	},
-	"providers.get": {
-		"0": "/providers/"
-	},
-	"providers.post": {
-		"0": "/providers/"
+	"put": {
+		"patients.put": {
+			"1": "/patients/:patientUuid/"
+		}
 	}
 };
 
-var analyzeParams = function (args) {
-    var paramsSize = 0;
-    var params = [];
-    var argumentsObj = null;
-    for (var i = 0; i < args.length; i++) {
-        if (typeof args[i] != 'object') {
-            paramsSize++;
-            params.push(args[i]);
+var parse = function (str) {
+    try {
+        if (arguments.length > 1) {
+            var args = arguments[1],
+                i = 0;
+            return str.replace(/:(\w+)/g, function () {
+                return args[i++];
+            });
         } else {
-            argumentsObj = args[i];
+            if (str) {
+                return str;
+            }
+            throw 'Function is not valid.';
         }
-
+    } catch (err) {
+        throw 'Function is not valid for given arguments.';
     }
-    return {
-        paramsSize: paramsSize,
-        argumentsObj: argumentsObj,
-        params: params
-    };
-};
-
-var getUrl = function (url, params, args, argsToPath) {
-
-    if (!url) {
-        return null;
-    }
-
-    if (params.length > 0) {
-        var i = 0;
-        url = url.replace(/:(\w+)/g, function () {
-            return params[i++];
-        });
-    }
-
-    if (args && argsToPath) {
-        var tmp = Object.keys(args).map(function (k) {
-            return encodeURIComponent(k) + '=' + args[k];
-        }).join('&');
-
-        if (url.split("\?").length > 1) {
-            url += '&' + tmp;
-        } else {
-            url += '?' + tmp;
-        }
-    }
-
-    return url;
 };
 
 endpoint.orders = {};
+endpoint.orders.get = {};
 endpoint.orders.get = function() {
-	var obj = urlsData['orders.get'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
+	var size = arguments.length > 0 ? arguments.length : 0;
+	var url = parse(urlsData['get']['orders.get'][size], Array.prototype.slice.call(arguments, 0, size));
+	sys.logs.debug('[Dendi LIS] GET from: ' + url);
 	return endpoint.get(url);
-};
-
-endpoint.orders.post = function() {
-	var obj = urlsData['orders.post'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, false);
-	return endpoint.post(url, params.argumentsObj);
-};
-
-endpoint.orders.delete = function() {
-	var obj = urlsData['orders.delete'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
-	return endpoint.delete(url);
 };
 
 endpoint.orders.pools = {};
+endpoint.orders.pools.get = {};
 endpoint.orders.pools.get = function() {
-	var obj = urlsData['orders.pools.get'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
+	var size = arguments.length > 0 ? arguments.length : 0;
+	var url = parse(urlsData['get']['orders.pools.get'][size], Array.prototype.slice.call(arguments, 0, size));
+	sys.logs.debug('[Dendi LIS] GET from: ' + url);
 	return endpoint.get(url);
-};
-
-endpoint.orders.pools.post = function() {
-	var obj = urlsData['orders.pools.post'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, false);
-	return endpoint.post(url, params.argumentsObj);
 };
 
 endpoint.orders.reports = {};
+endpoint.orders.reports.get = {};
 endpoint.orders.reports.get = function() {
-	var obj = urlsData['orders.reports.get'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
-	var reportData = endpoint.get(url);
-	return endpoint._getReportFile(reportData);
-};
-
-endpoint.reports = {};
-endpoint.reports.post = function() {
-	var obj = urlsData['reports.post'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, false);
-	return endpoint.post(url, params.argumentsObj);
-};
-
-endpoint.patients = {};
-endpoint.patients.get = function() {
-	var obj = urlsData['patients.get'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
+	var size = arguments.length > 0 ? arguments.length : 0;
+	var url = parse(urlsData['get']['orders.reports.get'][size], Array.prototype.slice.call(arguments, 0, size));
+	sys.logs.debug('[Dendi LIS] GET from: ' + url);
 	return endpoint.get(url);
-};
-
-endpoint.patients.put = function() {
-	var obj = urlsData['patients.put'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, false);
-	return endpoint.put(url, params.argumentsObj);
-};
-
-endpoint.patients.post = function() {
-	var obj = urlsData['patients.post'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, false);
-	return endpoint.post(url, params.argumentsObj);
 };
 
 endpoint.providers = {};
+endpoint.providers.get = {};
 endpoint.providers.get = function() {
-	var obj = urlsData['providers.get'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, true);
+	var size = arguments.length > 0 ? arguments.length : 0;
+	var url = parse(urlsData['get']['providers.get'][size], Array.prototype.slice.call(arguments, 0, size));
+	sys.logs.debug('[Dendi LIS] GET from: ' + url);
 	return endpoint.get(url);
 };
 
+endpoint.patients = {};
+endpoint.patients.get = {};
+endpoint.patients.get = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	var url = parse(urlsData['get']['patients.get'][size], Array.prototype.slice.call(arguments, 0, size));
+	sys.logs.debug('[Dendi LIS] GET from: ' + url);
+	return endpoint.get(url);
+};
+
+endpoint.orders.post = {};
+endpoint.orders.post = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	if(size <= 0) { return;
+		sys.logs.warn('wrong numbers of arguments for orders.post');
+	}
+	var url = parse(urlsData['post']['orders.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	sys.logs.debug('[Dendi LIS] POST from: ' + url);
+	return endpoint.post(url, arguments[arguments.length - 1]);
+};
+
+endpoint.orders.pools.post = {};
+endpoint.orders.pools.post = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	if(size <= 0) { return;
+		sys.logs.warn('wrong numbers of arguments for orders.pools.post');
+	}
+	var url = parse(urlsData['post']['orders.pools.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	sys.logs.debug('[Dendi LIS] POST from: ' + url);
+	return endpoint.post(url, arguments[arguments.length - 1]);
+};
+
+endpoint.providers.post = {};
 endpoint.providers.post = function() {
-	var obj = urlsData['providers.post'];
-	var params = analyzeParams(arguments);
-	var url = getUrl(obj[params.paramsSize], params.params, params.argumentsObj, false);
-	return endpoint.post(url, params.argumentsObj);
+	var size = arguments.length > 0 ? arguments.length : 0;
+	if(size <= 0) { return;
+		sys.logs.warn('wrong numbers of arguments for providers.post');
+	}
+	var url = parse(urlsData['post']['providers.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	sys.logs.debug('[Dendi LIS] POST from: ' + url);
+	return endpoint.post(url, arguments[arguments.length - 1]);
+};
+
+endpoint.patients.post = {};
+endpoint.patients.post = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	if(size <= 0) { return;
+		sys.logs.warn('wrong numbers of arguments for patients.post');
+	}
+	var url = parse(urlsData['post']['patients.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	sys.logs.debug('[Dendi LIS] POST from: ' + url);
+	return endpoint.post(url, arguments[arguments.length - 1]);
+};
+
+endpoint.reports = {};
+endpoint.reports.post = {};
+endpoint.reports.post = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	if(size <= 0) { return;
+		sys.logs.warn('wrong numbers of arguments for reports.post');
+	}
+	var url = parse(urlsData['post']['reports.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	sys.logs.debug('[Dendi LIS] POST from: ' + url);
+	return endpoint.post(url, arguments[arguments.length - 1]);
+};
+
+endpoint.orders.delete = {};
+endpoint.orders.delete = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	var url = parse(urlsData['delete']['orders.delete'][size], Array.prototype.slice.call(arguments, 0, size));
+	sys.logs.debug('[Dendi LIS] DELETE from: ' + url);
+	return endpoint.delete(url);
+};
+
+endpoint.patients.put = {};
+endpoint.patients.put = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	if(size <= 0) { return;
+		sys.logs.warn('wrong numbers of arguments for patients.put');
+	}
+	var url = parse(urlsData['put']['patients.put'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	sys.logs.debug('[Dendi LIS] PUT from: ' + url);
+	return endpoint.put(url, arguments[arguments.length - 1]);
 };
 
