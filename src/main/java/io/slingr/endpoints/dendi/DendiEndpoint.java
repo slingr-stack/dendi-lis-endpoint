@@ -159,8 +159,10 @@ public class DendiEndpoint extends HttpEndpoint {
     @EndpointWebService(path = "/orders", methods = {RestMethod.POST})
     private WebServiceResponse processWebhook(WebServiceRequest request) {
         Json requestHeaders = request.getHeaders();
-        String webhookAuthToken = requestHeaders.string("Authorization");
-        if (StringUtils.equals(this.webhooksToken,webhookAuthToken)) {
+        String webhookAuthToken = requestHeaders.string("authorization");
+        System.out.println("webhookAuthToken: "+webhookAuthToken);
+        System.out.println("this.webhooksToken: "+this.webhooksToken);
+        if (!StringUtils.equals(this.webhooksToken,webhookAuthToken)) {
             appLogger.error("[Dendi LIS] Received a Webhook but token was invalid, it has been discarded");
             throw EndpointException.permanent(ErrorCode.GENERAL,"Webhook received but token was invalid. It has been discarded.");
         };
