@@ -9,159 +9,58 @@
 
 var urlsData = {
 	"get": {
-		"patients.getByUuid": {
-			"1": "/patients/?uuid=:patientUuid"
-		},
-		"patients.getAll": {
-			"0": "/patients/"
-		},
-		"patient_payers.get": {
-			"0": "/patient_payers/"
-		},
-		"patient_payers.getByOrderCode": {
-			"1": "/orders/order_patient_payers/?code=:code"
-		},
-		"patient_guarantors.getByOrderCode": {
-			"1": "/orders/order_patient_guarantors/?code=:code"
-		},
-		"providers.get": {
-			"1": "/providers/?npi=:providerNpi"
-		},
-		"samples.getAll": {
-			"0": "/samples/"
-		},
-		"samples.types.getAll": {
-			"0": "/sample_types/"
-		},
-		"samples.tests.getAll": {
-			"0": "/sample_tests/"
-		},
-		"referenceLabs.getAll": {
-			"0": "/reference_labs/"
-		},
-		"sendouts.getAll": {
-			"0": "/sendouts/"
-		},
-		"diagnosisCodes.getAll": {
-			"0": "/autocomplete/diagnosis_code/"
-		},
-		"diagnosisCodes.get": {
-			"1": "/autocomplete/diagnosis_code/?q=:query"
-		},
-		"inHouseLabLocations.getAll": {
-			"0": "/in_house_lab_locations/"
-		},
-		"accounts.getAll": {
-			"0": "/accounts/"
-		},
-		"collectors.getAll": {
-			"0": "/collectors/"
-		},
-		"orders.getByUuid": {
-			"1": "/orders/?uuid=:orderId"
-		},
-		"orders.getAll": {
-			"0": "/orders/"
-		},
-		"orders.pools.getAll": {
-			"0": "/orders/pools/"
-		},
-		"orders.reports.getAll": {
-			"0": "/orders/reports/"
-		},
-		"orders.reports.getByOrderCode": {
-			"1": "/orders/reports/?code=:orderCode"
-		},
-		"orders.testsResults.getByOrderUuid": {
-			"1": "/orders/test_results/?uuid=:uuid"
-		},
-		"orders.testsResults.getByOrderCode": {
-			"1": "/orders/test_results/?code=:code"
-		},
-		"testTypes.getAll": {
-			"0": "/test_types/"
-		},
-		"testTypes.getByName": {
-			"1": "/test_types/?name=:name"
-		},
-		"testPanelTypes.getAll": {
-			"0": "/test_panel_types/"
-		},
-		"testPanelTypes.getByUuid": {
-			"1": "/test_panel_type_uuid/?test_panel_type_uuid=:testPanelTypeUuid"
-		},
-		"printers.getAll": {
-			"0": "/printers/"
-		},
-		"ehrIntegration.getAll": {
-			"0": "/ehr_integrations/"
-		},
-		"ehrIntegration.getByUuid": {
-			"1": "/ehr_integrations/?uuid=:uuid"
-		}
+		"patients.get": "/patients/",
+		"patient_payers.get": "/patient_payers/",
+		"patient_guarantors.get": "/orders/order_patient_guarantors/",
+		"providers.get": "/providers/",
+		"samples.get": "/samples/",
+		"samples.types.get": "/sample_types/",
+		"samples.tests.get": "/sample_tests/",
+		"referenceLabs.get": "/reference_labs/",
+		"sendouts.get": "/sendouts/",
+		"diagnosisCodes.getAll": "/autocomplete/diagnosis_code/",
+		"inHouseLabLocations.get": "/in_house_lab_locations/",
+		"accounts.get": "/accounts/",
+		"collectors.get": "/collectors/",
+		"orders.get": "/orders/",
+		"orders.pools.get": "/orders/pools/",
+		"orders.reports.get": "/orders/reports/",
+		"orders.testsResults.get": "/orders/test_results/",
+		"testTypes.get": "/test_types/",
+		"testPanelTypes.get": "/test_panel_types/",
+		"printers.get": "/printers/",
+		"ehrIntegration.get": "/ehr_integrations/"
 	},
 	"put": {
-		"patients.put": {
-			"1": "/patients/:patientUuid/"
-		},
-		"patient_payers.put": {
-			"1": "/patient_payers/:patientPayerUuid/"
-		},
-		"providers.put": {
-			"1": "/providers/:provider_uuid/"
-		},
-		"orders.testsResults.put": {
-			"1": "/orders/test_results/:testUuid/"
-		}
+		"patients.put": "/patients/:patientUuid/",
+		"patient_payers.put": "/patient_payers/:patientPayerUuid/",
+		"providers.put": "/providers/:provider_uuid/",
+		"orders.testsResults.put": "/orders/test_results/:testUuid/"
 	},
 	"post": {
-		"patients.post": {
-			"0": "/patients/"
-		},
-		"patients.bop": {
-			"0": "/patients/"
-		},
-		"patient_payers.post": {
-			"0": "/patient_payers/"
-		},
-		"providers.post": {
-			"0": "/providers/"
-		},
-		"sendouts.post": {
-			"0": "/sendouts/"
-		},
-		"accounts.post": {
-			"0": "/accounts/"
-		},
-		"orders.post": {
-			"0": "/orders/"
-		},
-		"orders.pools.post": {
-			"0": "/orders/pools/"
-		},
-		"orders.testsResults.post": {
-			"0": "/orders/test_results/"
-		},
-		"reports.post": {
-			"0": "/reports/"
-		},
-		"print_jobs.post": {
-			"3": "/print_jobs/?printer_id=:printeId&sample_uuid=:sampleUuid&num_copies=:numCopies/"
-		}
+		"patients.post": "/patients/",
+		"patients.bop": "/patients/",
+		"patient_payers.post": "/patient_payers/",
+		"providers.post": "/providers/",
+		"sendouts.post": "/sendouts/",
+		"accounts.post": "/accounts/",
+		"orders.post": "/orders/",
+		"orders.pools.post": "/orders/pools/",
+		"orders.testsResults.post": "/orders/test_results/",
+		"reports.post": "/reports/",
+		"print_jobs.post": "/print_jobs/?printer_id=:printeId&sample_uuid=:sampleUuid&num_copies=:numCopies/"
 	},
 	"delete": {
-		"orders.delete": {
-			"1": "/orders/:orderCode/"
-		}
+		"orders.delete": "/orders/:orderCode/"
 	}
 };
 
 var parse = function (str) {
     try {
         if (arguments.length > 1) {
-            var args = arguments[1],
-                i = 0;
+            var args = arguments[1], i = 0;
             return str.replace(/:(\w+)/g, function () {
+                if (typeof(args[i]) != 'string') throw 'Invalid type of argument'
                 return args[i++];
             });
         } else {
@@ -176,265 +75,213 @@ var parse = function (str) {
 };
 
 endpoint.patients = {};
-endpoint.patients.getByUuid = {};
-endpoint.patients.getByUuid = function() {
+endpoint.patients.get = {};
+endpoint.patients.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['patients.getByUuid'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['patients.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.patients.getAll = {};
-endpoint.patients.getAll = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['patients.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.patient_payers = {};
 endpoint.patient_payers.get = {};
 endpoint.patient_payers.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['patient_payers.get'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['patient_payers.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.patient_payers.getByOrderCode = {};
-endpoint.patient_payers.getByOrderCode = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['patient_payers.getByOrderCode'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.patient_guarantors = {};
-endpoint.patient_guarantors.getByOrderCode = {};
-endpoint.patient_guarantors.getByOrderCode = function() {
+endpoint.patient_guarantors.get = {};
+endpoint.patient_guarantors.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['patient_guarantors.getByOrderCode'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['patient_guarantors.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.providers = {};
 endpoint.providers.get = {};
 endpoint.providers.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['providers.get'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['providers.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.samples = {};
-endpoint.samples.getAll = {};
-endpoint.samples.getAll = function() {
+endpoint.samples.get = {};
+endpoint.samples.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['samples.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['samples.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.samples.types = {};
-endpoint.samples.types.getAll = {};
-endpoint.samples.types.getAll = function() {
+endpoint.samples.types.get = {};
+endpoint.samples.types.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['samples.types.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['samples.types.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.samples.tests = {};
-endpoint.samples.tests.getAll = {};
-endpoint.samples.tests.getAll = function() {
+endpoint.samples.tests.get = {};
+endpoint.samples.tests.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['samples.tests.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['samples.tests.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.referenceLabs = {};
-endpoint.referenceLabs.getAll = {};
-endpoint.referenceLabs.getAll = function() {
+endpoint.referenceLabs.get = {};
+endpoint.referenceLabs.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['referenceLabs.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['referenceLabs.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.sendouts = {};
-endpoint.sendouts.getAll = {};
-endpoint.sendouts.getAll = function() {
+endpoint.sendouts.get = {};
+endpoint.sendouts.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['sendouts.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['sendouts.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.diagnosisCodes = {};
 endpoint.diagnosisCodes.getAll = {};
 endpoint.diagnosisCodes.getAll = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['diagnosisCodes.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['diagnosisCodes.getAll'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.diagnosisCodes.get = {};
-endpoint.diagnosisCodes.get = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['diagnosisCodes.get'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.inHouseLabLocations = {};
-endpoint.inHouseLabLocations.getAll = {};
-endpoint.inHouseLabLocations.getAll = function() {
+endpoint.inHouseLabLocations.get = {};
+endpoint.inHouseLabLocations.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['inHouseLabLocations.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['inHouseLabLocations.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.accounts = {};
-endpoint.accounts.getAll = {};
-endpoint.accounts.getAll = function() {
+endpoint.accounts.get = {};
+endpoint.accounts.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['accounts.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['accounts.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.collectors = {};
-endpoint.collectors.getAll = {};
-endpoint.collectors.getAll = function() {
+endpoint.collectors.get = {};
+endpoint.collectors.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['collectors.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['collectors.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.orders = {};
-endpoint.orders.getByUuid = {};
-endpoint.orders.getByUuid = function() {
+endpoint.orders.get = {};
+endpoint.orders.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['orders.getByUuid'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['orders.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.orders.getAll = {};
-endpoint.orders.getAll = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['orders.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.orders.pools = {};
-endpoint.orders.pools.getAll = {};
-endpoint.orders.pools.getAll = function() {
+endpoint.orders.pools.get = {};
+endpoint.orders.pools.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['orders.pools.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['orders.pools.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.orders.reports = {};
-endpoint.orders.reports.getAll = {};
-endpoint.orders.reports.getAll = function() {
+endpoint.orders.reports.get = {};
+endpoint.orders.reports.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['orders.reports.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.orders.reports.getByOrderCode = {};
-endpoint.orders.reports.getByOrderCode = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['orders.reports.getByOrderCode'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['orders.reports.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
 	var pdfInfo = endpoint.get(url);
 	return endpoint._getReportFile(pdfInfo);
 };
 
 endpoint.orders.testsResults = {};
-endpoint.orders.testsResults.getByOrderUuid = {};
-endpoint.orders.testsResults.getByOrderUuid = function() {
+endpoint.orders.testsResults.get = {};
+endpoint.orders.testsResults.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['orders.testsResults.getByOrderUuid'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['orders.testsResults.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.orders.testsResults.getByOrderCode = {};
-endpoint.orders.testsResults.getByOrderCode = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['orders.testsResults.getByOrderCode'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.testTypes = {};
-endpoint.testTypes.getAll = {};
-endpoint.testTypes.getAll = function() {
+endpoint.testTypes.get = {};
+endpoint.testTypes.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['testTypes.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['testTypes.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.testTypes.getByName = {};
-endpoint.testTypes.getByName = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['testTypes.getByName'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.testPanelTypes = {};
-endpoint.testPanelTypes.getAll = {};
-endpoint.testPanelTypes.getAll = function() {
+endpoint.testPanelTypes.get = {};
+endpoint.testPanelTypes.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['testPanelTypes.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['testPanelTypes.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.testPanelTypes.getByUuid = {};
-endpoint.testPanelTypes.getByUuid = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['testPanelTypes.getByUuid'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.printers = {};
-endpoint.printers.getAll = {};
-endpoint.printers.getAll = function() {
+endpoint.printers.get = {};
+endpoint.printers.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['printers.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['printers.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.ehrIntegration = {};
-endpoint.ehrIntegration.getAll = {};
-endpoint.ehrIntegration.getAll = function() {
+endpoint.ehrIntegration.get = {};
+endpoint.ehrIntegration.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['ehrIntegration.getAll'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['get']['ehrIntegration.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
-};
-
-endpoint.ehrIntegration.getByUuid = {};
-endpoint.ehrIntegration.getByUuid = function() {
-	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['get']['ehrIntegration.getByUuid'][size], Array.prototype.slice.call(arguments, 0, size));
-	sys.logs.debug('[Dendi LIS] GET from: ' + url);
-	return endpoint.get(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.get(url,params);
 };
 
 endpoint.patients.put = {};
@@ -607,8 +454,9 @@ endpoint.print_jobs.post = function() {
 endpoint.orders.delete = {};
 endpoint.orders.delete = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
-	var url = parse(urlsData['delete']['orders.delete'][size], Array.prototype.slice.call(arguments, 0, size));
+	var url = parse(urlsData['delete']['orders.delete'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] DELETE from: ' + url);
-	return endpoint.delete(url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
+	return endpoint.delete(url,params);
 };
 

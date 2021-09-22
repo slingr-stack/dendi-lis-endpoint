@@ -111,12 +111,17 @@ public class DendiEndpoint extends HttpEndpoint {
     }
 
     @EndpointFunction(name = "_getReportFile")
-    public Json getReportFile(Json pdfData) throws IOException {
+    public Json getReportFile(Json pdfInfo) throws IOException {
+        List<Json> responseItems = pdfInfo.jsons("results");
 
-        List<Json> reportsList = pdfData.jsons("results").get(0).jsons("reports");
+        if (responseItems.size()>1) {
+            throw EndpointException.permanent(ErrorCode.ARGUMENT,"The API returned more than one order for the parameters provided. This method is intended for fetching only one report.");
+        }
+        Json reportEntity = responseItems.get(0);
+        List<Json> reportsList = reportEntity.jsons("reports");
         String reportUrl = reportsList.get(reportsList.size()-1).string("pdf_file");
 
-        String fileName = "report-" + UUID.randomUUID() + ".pdf";
+        String fileName = "report-" + reportEntity.string("code") + ".pdf";
 
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpGet get = new HttpGet(reportUrl);
@@ -160,8 +165,6 @@ public class DendiEndpoint extends HttpEndpoint {
     private WebServiceResponse processWebhook(WebServiceRequest request) {
         Json requestHeaders = request.getHeaders();
         String webhookAuthToken = requestHeaders.string("authorization");
-        System.out.println("webhookAuthToken: "+webhookAuthToken);
-        System.out.println("this.webhooksToken: "+this.webhooksToken);
         if (!StringUtils.equals(this.webhooksToken,webhookAuthToken)) {
             appLogger.error("[Dendi LIS] Received a Webhook but token was invalid, it has been discarded");
             throw EndpointException.permanent(ErrorCode.GENERAL,"Webhook received but token was invalid. It has been discarded.");

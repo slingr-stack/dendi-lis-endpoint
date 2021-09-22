@@ -55,3 +55,4 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 endpoint_proxy.properties
+gen-dendi-helpers(bckp).js
