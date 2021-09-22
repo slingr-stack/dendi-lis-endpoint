@@ -20,7 +20,7 @@
     "events": [
         {
             "label": "Webhooks",
-            "name": "processWebhook",
+            "name": "webhooks",
             "description": "Event send for the endpoint each time that a POST request to the root /orders path of the web service."
         }
     ],
@@ -52,14 +52,20 @@
     ],
     "configuration":[
         {
-            "name": "API_TOKEN",
+            "name": "apiToken",
             "label": "API Token",
             "type": "text",
             "required": true
         },
         {
-            "name": "API_URL",
+            "name": "apiUrl",
             "label": "API URL",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "webhooksToken",
+            "label": "Webhooks Token",
             "type": "text",
             "required": true
         }

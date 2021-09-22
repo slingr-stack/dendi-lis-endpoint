@@ -2,6 +2,7 @@ package io.slingr.endpoints.dendi;
 
 import io.slingr.endpoints.HttpEndpoint;
 import io.slingr.endpoints.exceptions.EndpointException;
+import io.slingr.endpoints.exceptions.ErrorCode;
 import io.slingr.endpoints.framework.annotations.*;
 import io.slingr.endpoints.services.AppLogs;
 import io.slingr.endpoints.services.HttpService;
@@ -12,6 +13,7 @@ import io.slingr.endpoints.ws.exchange.FunctionRequest;
 import io.slingr.endpoints.ws.exchange.WebServiceRequest;
 import io.slingr.endpoints.ws.exchange.WebServiceResponse;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -39,23 +41,26 @@ public class DendiEndpoint extends HttpEndpoint {
     private AppLogs appLogger;
 
     @EndpointProperty
-    private String API_URL;
+    private String apiUrl;
 
     @EndpointProperty
-    private String API_TOKEN;
+    private String apiToken;
+
+    @EndpointProperty
+    private String webhooksToken;
 
     public DendiEndpoint() {
     }
 
     @Override
     public String getApiUri(){
-        return API_URL;
+        return this.apiUrl;
     }
 
     @Override
     public void endpointStarted() {
         //Dendi expects the Authorization header with "Token+whitespace+token" so we pass it like this
-        httpService().setupAuthenticationHeader("Token"," "+this.API_TOKEN);
+        httpService().setupAuthenticationHeader("Token"," "+this.apiToken);
         // the loggers, endpoint properties, data stores, etc. are initialized at this point. the endpoint is ready to be used
         logger.info("Endpoint is started");
     }
@@ -144,13 +149,8 @@ public class DendiEndpoint extends HttpEndpoint {
             String ERROR_MESSAGE = "Error to fetch report file";
             logger.error(ERROR_MESSAGE, e);
             appLogger.error(ERROR_MESSAGE, e);
-            status = "error";
-            statusCode = 500;
+            throw EndpointException.permanent(ErrorCode.GENERAL,ERROR_MESSAGE);
         } finally {
-            /*
-            resp.set("status", status);
-            resp.set("statusCode", statusCode);
-             */
             IOUtils.closeQuietly(is);
         }
         return fileJson;
@@ -158,30 +158,14 @@ public class DendiEndpoint extends HttpEndpoint {
 
     @EndpointWebService(path = "/orders", methods = {RestMethod.POST})
     private WebServiceResponse processWebhook(WebServiceRequest request) {
-        Json requestBody = (Json) request.getBody();
-        events().send("processWebhook", HttpService.defaultWebhookConverter(request));
-
+        Json requestHeaders = request.getHeaders();
+        String webhookAuthToken = requestHeaders.string("Authorization");
+        if (StringUtils.equals(this.webhooksToken,webhookAuthToken)) {
+            appLogger.error("[Dendi LIS] Received a Webhook but token was invalid, it has been discarded");
+            throw EndpointException.permanent(ErrorCode.GENERAL,"Webhook received but token was invalid. It has been discarded.");
+        };
+        events().send("webhooks", HttpService.defaultWebhookConverter(request));
         return new WebServiceResponse();
     }
 
-    @EndpointWebService(path = "/test", methods = RestMethod.GET)
-    public WebServiceResponse getResponse() throws Exception {
-
-        final int value = (int) Math.floor(Math.random()*1000);
-        appLogger.info(String.format("Request value [%s]", value));
-
-        final Object appResponse = events().sendSync("requestInformation", Json.map().set("value", value));
-        appLogger.info(String.format("Request response from server [%s]", appResponse));
-
-        final WebServiceResponse response = new WebServiceResponse(Json.map()
-                .set("value", value)
-                .set("appResponse", appResponse)
-        );
-        response.setHttpCode(202); // HTTP code: 202 Accepted
-        response.setHeader(Parameter.CONTENT_TYPE, ContentType.APPLICATION_JSON.getMimeType());
-        response.setHeader("value", value);
-
-        logger.info(String.format("Response from server: [%s]", response.getBody().toString()));
-        return response;
-    }
 }

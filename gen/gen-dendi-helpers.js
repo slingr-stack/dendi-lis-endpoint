@@ -5,25 +5,89 @@ var CODE = '';
 var cache = {};
 
 var apiURLs = {
-    'orders': [
-        {'name': 'get','operation': 'GET','url': '/orders?uuid=:orderId'},
-        {'name': 'post','operation': 'POST','url': '/orders/'},
-        {'name': 'delete','operation': 'DELETE','url': '/orders/:orderCode/'},
-        {'name': 'pools.get','operation': 'GET','url': '/orders/pools/'},
-        {'name': 'pools.post','operation': 'POST','url': '/orders/pools/'},
-        {'name': 'reports.get','operation': 'GET','url': '/orders/reports/?code=:orderCode'},
-    ],
-    'providers': [
-        {'name': 'get','operation': 'GET','url': '/providers/'},
-        {'name': 'post','operation': 'POST','url': '/providers/'},
-    ],
     'patients': [
-        {'name': 'get','operation': 'GET','url': '/patients/?account_uuid=:accountUuid'},
+        {'name': 'getByUuid','operation': 'GET','url': '/patients/?uuid=:patientUuid'},
+        {'name': 'getAll','operation': 'GET','url': '/patients/'},
         {'name': 'put','operation': 'PUT','url': '/patients/:patientUuid/'},
         {'name': 'post','operation': 'POST','url': '/patients/'},
+        {'name': 'bop','operation': 'POST','url': '/patients/'},
+    ],
+    'patient_payers': [
+        {'name': 'get','operation': 'GET','url': '/patient_payers/'},
+        {'name': 'put','operation': 'PUT','url': '/patient_payers/:patientPayerUuid/'},
+        {'name': 'post','operation': 'POST','url': '/patient_payers/'},
+        {'name': 'getByOrderCode','operation': 'GET','url': '/orders/order_patient_payers/?code=:code'},
+    ],
+    'patient_guarantors': [
+        {'name': 'getByOrderCode','operation': 'GET','url': '/orders/order_patient_guarantors/?code=:code'},
+    ],
+    'providers': [
+        {'name': 'get','operation': 'GET','url': '/providers/?npi=:providerNpi'},
+        {'name': 'put','operation': 'PUT','url': '/providers/:provider_uuid/'},
+        {'name': 'post','operation': 'POST','url': '/providers/'},
+    ],
+    'samples': [
+        {'name': 'getAll','operation': 'GET','url': '/samples/'},
+        {'name': 'types.getAll','operation': 'GET','url': '/sample_types/'},
+        {'name': 'tests.getAll','operation': 'GET','url': '/sample_tests/'},
+    ],
+    'referenceLabs': [
+        {'name': 'getAll','operation': 'GET','url': '/reference_labs/'},
+    ],
+    'sendouts': [
+        {'name': 'getAll','operation': 'GET','url': '/sendouts/'},
+        {'name': 'post','operation': 'POST','url': '/sendouts/'},
+    ],
+    'diagnosisCodes':[
+        {'name': 'getAll','operation': 'GET','url': '/autocomplete/diagnosis_code/'},
+        {'name': 'get','operation': 'GET','url': '/autocomplete/diagnosis_code/?q=:query'},
+    ],
+    'inHouseLabLocations': [
+        {'name': 'getAll','operation': 'GET','url': '/in_house_lab_locations/'},
+    ],
+    'accounts': [
+        {'name': 'getAll','operation': 'GET','url': '/accounts/'},
+        {'name': 'post','operation': 'POST','url': '/accounts/'},
+    ],
+    'collectors': [
+        {'name': 'getAll','operation': 'GET','url': '/collectors/'},
+        {'name': 'getAll','operation': 'GET','url': '/accounts/'},
+        {'name': 'getAll','operation': 'GET','url': '/collectors/'},
+    ],
+    'orders': [
+        {'name': 'getByUuid','operation': 'GET','url': '/orders/?uuid=:orderId'},
+        {'name': 'getAll','operation': 'GET','url': '/orders/'},
+        {'name': 'post','operation': 'POST','url': '/orders/'},
+        {'name': 'delete','operation': 'DELETE','url': '/orders/:orderCode/'},
+        {'name': 'pools.getAll','operation': 'GET','url': '/orders/pools/'},
+        {'name': 'pools.post','operation': 'POST','url': '/orders/pools/'},
+        {'name': 'reports.getAll','operation': 'GET','url': '/orders/reports/'},
+        {'name': 'reports.getByOrderCode','operation': 'GET','url': '/orders/reports/?code=:orderCode'},
+        {'name': 'testsResults.getByOrderUuid','operation': 'GET','url': '/orders/test_results/?uuid=:uuid'},
+        {'name': 'testsResults.getByOrderCode','operation': 'GET','url': '/orders/test_results/?code=:code'},
+        {'name': 'testsResults.put','operation': 'PUT','url': '/orders/test_results/:testUuid/'},
+        {'name': 'testsResults.post','operation': 'POST','url': '/orders/test_results/'},
     ],
     'reports': [
         {'name': 'post','operation': 'POST','url': '/reports/'},
+    ],
+    'testTypes': [
+        {'name': 'getAll','operation': 'GET','url': '/test_types/'},
+        {'name': 'getByName','operation': 'GET','url': '/test_types/?name=:name'},
+    ],
+    'testPanelTypes': [
+        {'name': 'getAll','operation': 'GET','url': '/test_panel_types/'},
+        {'name': 'getByUuid','operation': 'GET','url': '/test_panel_type_uuid/?test_panel_type_uuid=:testPanelTypeUuid'},
+    ],
+    'printers': [
+        {'name': 'getAll','operation': 'GET','url': '/printers/'},
+    ],
+    'ehrIntegration': [
+        {'name': 'getAll','operation': 'GET','url': '/ehr_integrations/'},
+        {'name': 'getByUuid','operation': 'GET','url': '/ehr_integrations/?uuid=:uuid'},
+    ],
+    'print_jobs': [
+        {'name': 'post','operation': 'POST','url': '/print_jobs/?printer_id=:printeId&sample_uuid=:sampleUuid&num_copies=:numCopies/'},
     ]
 };
 
