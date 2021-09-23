@@ -165,7 +165,7 @@ var makeEndpointsHelpers = function () {
             } else if (method == 'post' || method == 'put' ) {
                 var sizeStr = 'var size = arguments.length > 0 ? arguments.length : 0;\n\t';
                 sizeStr += 'if(size <= 0) { return;\n\t\tsys.logs.warn(\'wrong numbers of arguments for ' + fn + '.' + method + '\');\n\t}';
-                var parseStr = 'parse(urlsData[\'' + method + '\'][\'' + fn + '\'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));';
+                var parseStr = 'parse(urlsData[\'' + method + '\'][\'' + fn + '\'], Array.prototype.slice.call(arguments, 0, size-1));';
                 CODE += ENDPOINT_NAMESPACE + NAMESPACE_CONCAT_SYMBOL + fn + ' = function() {\n\t' +
                     sizeStr + '\n\tvar url = ' + parseStr + '\n\tsys.logs.debug(\'[Dendi LIS] ' + method.toUpperCase()
                     + ' from: \' + url);\n\treturn ' + ENDPOINT_NAMESPACE + NAMESPACE_CONCAT_SYMBOL + method

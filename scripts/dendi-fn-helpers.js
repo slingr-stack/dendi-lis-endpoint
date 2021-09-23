@@ -230,6 +230,7 @@ endpoint.orders.reports.get = function() {
 	var size = arguments.length > 0 ? arguments.length : 0;
 	var url = parse(urlsData['get']['orders.reports.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
+	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
 	var pdfInfo = endpoint.get(url);
 	return endpoint._getReportFile(pdfInfo);
 };
@@ -290,7 +291,7 @@ endpoint.patients.put = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for patients.put.put');
 	}
-	var url = parse(urlsData['put']['patients.put'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['put']['patients.put'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] PUT from: ' + url);
 	return endpoint.put(url, arguments[arguments.length - 1]);
 };
@@ -301,7 +302,7 @@ endpoint.patient_payers.put = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for patient_payers.put.put');
 	}
-	var url = parse(urlsData['put']['patient_payers.put'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['put']['patient_payers.put'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] PUT from: ' + url);
 	return endpoint.put(url, arguments[arguments.length - 1]);
 };
@@ -312,7 +313,7 @@ endpoint.providers.put = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for providers.put.put');
 	}
-	var url = parse(urlsData['put']['providers.put'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['put']['providers.put'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] PUT from: ' + url);
 	return endpoint.put(url, arguments[arguments.length - 1]);
 };
@@ -323,7 +324,7 @@ endpoint.orders.testsResults.put = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for orders.testsResults.put.put');
 	}
-	var url = parse(urlsData['put']['orders.testsResults.put'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['put']['orders.testsResults.put'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] PUT from: ' + url);
 	return endpoint.put(url, arguments[arguments.length - 1]);
 };
@@ -334,7 +335,7 @@ endpoint.patients.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for patients.post.post');
 	}
-	var url = parse(urlsData['post']['patients.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['patients.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -345,7 +346,7 @@ endpoint.patients.bop = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for patients.bop.post');
 	}
-	var url = parse(urlsData['post']['patients.bop'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['patients.bop'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -356,7 +357,7 @@ endpoint.patient_payers.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for patient_payers.post.post');
 	}
-	var url = parse(urlsData['post']['patient_payers.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['patient_payers.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -367,7 +368,7 @@ endpoint.providers.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for providers.post.post');
 	}
-	var url = parse(urlsData['post']['providers.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['providers.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -378,7 +379,7 @@ endpoint.sendouts.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for sendouts.post.post');
 	}
-	var url = parse(urlsData['post']['sendouts.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['sendouts.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -389,7 +390,7 @@ endpoint.accounts.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for accounts.post.post');
 	}
-	var url = parse(urlsData['post']['accounts.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['accounts.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -400,7 +401,7 @@ endpoint.orders.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for orders.post.post');
 	}
-	var url = parse(urlsData['post']['orders.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['orders.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -411,7 +412,7 @@ endpoint.orders.pools.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for orders.pools.post.post');
 	}
-	var url = parse(urlsData['post']['orders.pools.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['orders.pools.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -422,7 +423,7 @@ endpoint.orders.testsResults.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for orders.testsResults.post.post');
 	}
-	var url = parse(urlsData['post']['orders.testsResults.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['orders.testsResults.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -434,7 +435,7 @@ endpoint.reports.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for reports.post.post');
 	}
-	var url = parse(urlsData['post']['reports.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['reports.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
@@ -446,7 +447,7 @@ endpoint.print_jobs.post = function() {
 	if(size <= 0) { return;
 		sys.logs.warn('wrong numbers of arguments for print_jobs.post.post');
 	}
-	var url = parse(urlsData['post']['print_jobs.post'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	var url = parse(urlsData['post']['print_jobs.post'], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[Dendi LIS] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };
