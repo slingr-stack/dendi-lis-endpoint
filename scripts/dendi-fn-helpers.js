@@ -231,7 +231,7 @@ endpoint.orders.reports.get = function() {
 	var url = parse(urlsData['get']['orders.reports.get'], Array.prototype.slice.call(arguments, 0, size));
 	sys.logs.debug('[Dendi LIS] GET from: ' + url);
 	var params = typeof(arguments[arguments.length-1])=='object' ? {params: arguments[arguments.length-1]} : {};
-	var pdfInfo = endpoint.get(url);
+	var pdfInfo = endpoint.get(url,params);
 	return endpoint._getReportFile(pdfInfo);
 };
 
