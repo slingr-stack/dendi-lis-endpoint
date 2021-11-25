@@ -46,38 +46,31 @@ The Javascript API provides direct access to the Dendi LIS API so you can make r
 
 ### HTTP requests
 
-You can make `GET`,`PUT`, `POST` and `DELETE` request to the Dendi LIS API like this:
+You can make `GET`,`PUT`, `POST` and `DELETE` request to the Dendi LIS API via generics, or using helpers.
+We recomend using helpers as they are more convenient and easy to read:
 
 ```js
-var dendiOrders = app.endpoints.dendi.patients.get();//using a generic GET
-var dendiOrder = app.endpoints.dendi.patients.put("b2ccecc7-58b9-4836-b64d-5372bcf82788",{"birth_date": "1980-01-05"});//using a PUT helper that receives the patient uuid and a body with the fields to update
+//Using a generic GET/PUT/POST/DELETE:
+var dendiPatients = app.endpoints.dendi.get('/patients');
+var dendiPatient = app.endpoints.dendi.put('/patients/' + patientId, {"birth_date": "1980-01-05"});
+var dendiOrder = app.endpoints.dendi.orders.post('/orders',{   
+    "account_uuid": "aebb58c9-f21d-442f-af47-d82471f79f20",
+    "provider_uuid": "a4f995e8-4f9d-4561-9db5-0d1167485231",
+    "patient_uuid": "18b659b2-bee5-4902-b0d6-6b11b2a08554",
+    ...
+});
+var dendiOrder = app.endpoints.dendi.delete('/orders/' + orderId);
+
+//The same calls using helpers:
+var dendiPatients = app.endpoints.dendi.patients.get();
+var dendiPatient = app.endpoints.dendi.patients.put(patientId,{"birth_date": "1980-01-05"});
 var dendiOrder = app.endpoints.dendi.orders.post({   
     "account_uuid": "aebb58c9-f21d-442f-af47-d82471f79f20",
     "provider_uuid": "a4f995e8-4f9d-4561-9db5-0d1167485231",
     "patient_uuid": "18b659b2-bee5-4902-b0d6-6b11b2a08554",
-    "ehr_integration_uuid": "c839686c-b1d7-4ca9-8918-505d117a03ce", 
-    "reference_lab_uuid": "ff3a8ab5-8af0-4d55-9627-3a437b539517",
-    "submitted_date": "2020-08-11T17:13:00",
-    "reference_lab_received_date": "2020-08-11T17:13:00",
-    "origin": "Reference Lab",
-    "origin_entity": "Dendi API",
-    "order_samples": [
-        {
-            "sample_type_uuid": "905bf12f-70a4-4a79-95c5-4ad61456f625",
-            "collection_date": "2020-08-11T01:39:00",
-            "test_panel_uuids": [
-                "9a6dc281-aab7-47e0-b1d2-7ba339b135cd"
-            ]
-        }
-    ],
-    "diagnosis_code_uuids": [
-        "b473220f-2abc-45f5-8355-9374c263627f"
-    ],
-    "alternate_id": "341101",
-    "reference_id": "2020-0021920",
-    "notes_by_provider": "Testing an API call."    
-});//using a POST helper to create a new order
-var dendiOrder = app.endpoints.dendi.orders.delete("2020-0000029");//using a DELETE helper that receives the order code
+    ...
+});
+var dendiOrder = app.endpoints.dendi.orders.delete(orderId);
 ```
 
 Also, you can filter the items you want to get by sending params to the call:
