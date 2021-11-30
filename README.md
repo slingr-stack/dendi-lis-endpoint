@@ -53,7 +53,7 @@ We recomend using helpers as they are more convenient and easy to read:
 //Using a generic GET/PUT/POST/DELETE:
 var dendiPatients = app.endpoints.dendi.get('/patients');
 var dendiPatient = app.endpoints.dendi.put('/patients/' + patientId, {"birth_date": "1980-01-05"});
-var dendiOrder = app.endpoints.dendi.orders.post('/orders',{   
+var dendiOrder = app.endpoints.dendi.post('/orders',{   
     "account_uuid": "aebb58c9-f21d-442f-af47-d82471f79f20",
     "provider_uuid": "a4f995e8-4f9d-4561-9db5-0d1167485231",
     "patient_uuid": "18b659b2-bee5-4902-b0d6-6b11b2a08554",
